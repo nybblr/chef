@@ -30,6 +30,20 @@ The ruby DSL will be avoided in favour of version-controlling the raw JSON forma
 
 This approach to version control may be scripted into a rake command at a later date, so that uncaptured changes (for example, made by a non-technical user through the web UI) may be easily captured in version control.
 
+We have yet to develop a clear strategy for managing environments.
+Ideally, this strategy will involve semantic versioning on the chef-repo
+itself (to allow any build to be tagged with metadata for not only
+application components, but server configuration as well). It should
+also ideally involve access-control for environments based on git
+branches, so that per-branch access can be more accessible for future
+testing and development environments. This will leave an opportunity for
+even more transparency and automation, allow any low-level contributor
+to push config changes and have them tested in an automated fashion in a
+sandboxed environment.
+
+It may be the case that our access-control requirements may not work
+with the actual Environment construct build into Chef.
+
 # Recommended Development Approach
 
 Established cookbooks, regardless of how project-specific they may seem,
@@ -56,7 +70,6 @@ opposed to rdoc.)
 When it makes sense to have an isolated development environment for a
 cookbook, it is recommended that you follow a Librarian-centric
 approach in creating a [Vagrant](http://www.vagrantup.com) development environment. This approach is explained more fully in the [`freight-cooking` repo](https://github.com/patcon/freight-cooking). This will help to keep everyone working on cookbooks in consistent, shareable, and version-controlled environments.
-
 
 Repository Directories
 ======================
