@@ -16,13 +16,13 @@ Here are the current conventions for managing this chef-repo:
 
 2. `cookbooks-overrides` directory is used to store simple, file-specific overrides to otherwise established and stable external cookbooks from the community site or github. (It essentially bypasses Librarian management for simple customizations, pulling in overrides at the Chef/Knife level by using the secondary reference in the [`cookbook_path` setting of `knife.rb`](https://github.com/FLOSolutions/fga-chef-repo/tree/master/.chef/knife.rb#L16).) This is most appropriate for less complex changes to files and additions of any new files (recipes, templates, files, etc.). We'll need to carefully scrutinize these files when updating corresponding cookbooks in `Cheffile.lock`. If overrides are extensive, it may make sense to fork the external cookbook and pull in our own, but this should be avoided where possible. 
 
-3. `cookbooks-sources` directory is used to place git submodules that will be pulled into the dynamically-generated `cookbooks` directory using the `:path` attribute in the `Cheffile`. It is intended for custom cookbooks (especially those that are more actively developed), and (on master) its submodules should always reference tagged commits. While it is arguably better to simply pull in the tagged cookbooks from within the `Cheffile` via the `:git` attribute, this would act as a layer of indirection when viewing the chef-repo on github. We want our custom cookbooks to be most easily accessible, and github's feature of linking submodules is much preferable to a flat reference in `Cheffile`. 
+3. `cookbooks-sources` directory is used to place git submodules that will be pulled into the dynamically-generated `cookbooks` directory using the `:path` attribute in the `Cheffile`. It is intended for custom cookbooks (especially those that are more actively developed), and (on master) its submodules should always reference tagged commits. While it is arguably better to simply pull in the tagged cookbooks from within the `Cheffile` via the `:git` attribute, this would act as a layer of indirection when viewing the chef-repo on github. We want our custom cookbooks to be most easily accessible, and [github's feature of linking submodules](https://github.com/blog/154-submodule-display) is much preferable to a flat reference in `Cheffile`. 
 
 Further, every effort will be made to tag all actively developed cookbooks according to [semantic versioning specifications](http://semver.org/).
 
 During development, every effort will be made to use the [maximum version control strategy](http://www.opscode.com/blog/2011/04/21/chef-0-10-preview-environments/).
 
-Also, every effort with be made to make cookbook creation follow a [README-driven development process](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html), as espoused in [Joshua Timbermand's excellent article](http://jtimberman.github.com/blog/2011/09/03/guide-to-writing-chef-cookbooks/) on cookbook development strategies.
+Also, every effort with be made to make cookbook creation follow a [README-driven development process](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html), as espoused in [Joshua Timberman's excellent article](http://jtimberman.github.com/blog/2011/09/03/guide-to-writing-chef-cookbooks/) on cookbook development strategies.
 
 The ruby DSL will be avoided in favour of version-controlling the raw JSON format for roles, environments, etc. The rationale for this approach is so that changes made via the web UI (or any method that doesn't involve explicit editting of files as the primary means of change), can still be captured in version control in a meaningful manning. Uncaptured changes can be pulled into an appropriate format using a command comparable to this:
 
@@ -30,7 +30,7 @@ The ruby DSL will be avoided in favour of version-controlling the raw JSON forma
 
 This approach to version control may be scripted into a rake command at a later date, so that uncaptured changes (for example, made by a non-technical user through the web UI) may be easily captured in version control.
 
-## Recommended Development Approach
+# Recommended Development Approach
 
 Established cookbooks, regardless of how project-specific they may seem,
 should be hosted as external cookbooks. This allows not only for tagged
@@ -48,7 +48,7 @@ users will strip the `chef-` prefix, so ensure that all internal
 refernces refer to the cookbook by that name. In other words, generate
 cookbook skeletons with this command:
 
-`knife cookbook create APP_NAME -r md
+`knife cookbook create APP_NAME -r md`
 
 (It is recommended that you generate the README in markdown format, as
 opposed to rdoc.)
