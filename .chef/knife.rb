@@ -1,3 +1,8 @@
+
+require 'librarian/chef/integration/knife'
+
+current_dir = File.dirname(__FILE__)
+
 cookbook_path ["#{current_dir}/../site-cookbooks", "#{current_dir}/../cookbooks"]
 # Amazon AWS
 knife[:aws_access_key_id]     = ENV['EC2_ACCESS_KEY']

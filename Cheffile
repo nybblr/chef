@@ -3,19 +3,12 @@
 
 site 'http://community.opscode.com/api/v1'
 
-# Pennyworth cookbooks
-# https://github.com/patcon/pennyworth/tree/heavywater-5_librarian-chef
-cookbook 'apache2',         '0.99.4'
 cookbook 'apt',             '1.1.2'
 cookbook 'build-essential', '1.0.0'
-cookbook 'gpg',             '0.0.1'
-cookbook 'java',            '1.1.0'
-cookbook 'jenkins',         #0.6.0
-    :path => 'cookbooks-sources'
-cookbook 'leiningen',       '0.2.0'
-cookbook 'pennyworth',      #0.2.1
-    :path => 'cookbooks-sources'
-cookbook 'postfix',         '0.8.4'
-cookbook 'reprepro',        #0.3.0
-    :path => 'cookbooks-sources'
-cookbook 'runit',           '0.14.2'
+cookbook 'rvm',
+	:git => 'git://github.com/fnichol/chef-rvm.git', :ref => 'v0.9.0'
+cookbook 'unicorn'
+cookbook 'nginx'
+cookbook 'git'
+cookbook 'aws'
+cookbook 'logrotate'
