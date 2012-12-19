@@ -4,6 +4,8 @@ current_dir = File.dirname(__FILE__)
 # Amazon AWS
 knife[:aws_access_key_id]     = ENV['EC2_ACCESS_KEY']
 knife[:aws_secret_access_key] = ENV['EC2_SECRET_KEY']
+knife[:region]                = ENV['EC2_REGION']
+knife[:chef_mode]             = "solo"
 
 log_level                :info
 log_location             STDOUT
