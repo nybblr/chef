@@ -6,19 +6,19 @@ chef_binary=/var/lib/gems/1.9.1/bin/chef-solo
 if ! test -f "$chef_binary"; then
 	export DEBIAN_FRONTEND=noninteractive
 	# Upgrade headlessly (this is only safe-ish on vanilla systems)
-	aptitude update &&
+	aptitude update
 	apt-get -o Dpkg::Options::="--force-confnew" \
-		--force-yes -fuy dist-upgrade &&
+		--force-yes -fuy dist-upgrade
 	# Install Ruby and Chef
 	aptitude install -y ruby1.9.1 ruby1.9.1-dev make vim git-core &&
-	sudo gem1.9.1 install --no-rdoc --no-ri chef librarian &&
-	mkdir -p /etc/chef &&
+	sudo gem1.9.1 install --no-rdoc --no-ri chef librarian
+	mkdir -p /etc/chef
 	cd /etc/chef &&
 	git clone https://bitbucket.org/nybblr/chef-solo ./
 fi &&
 
 cd /etc/chef &&
-librarian-chef install &&
+librarian-chef install
 "$chef_binary" -c solo.rb -j solo.json
 
 '
