@@ -15,10 +15,10 @@ if ! test -f "$chef_binary"; then
 	mkdir -p /etc/chef
 	cd /etc/chef &&
 	git clone https://bitbucket.org/nybblr/chef-solo ./
-fi &&
+fi
 
 cd /etc/chef &&
 librarian-chef install
-"$chef_binary" -c solo.rb -j solo.json
+chef-solo -c solo.rb -j solo.json
 
 '
